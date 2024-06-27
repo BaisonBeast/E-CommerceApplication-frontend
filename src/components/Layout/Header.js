@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div className="container-fluid">
+        <div className="container-fluid" style={{width: "98%"}}>
           <button
             className="navbar-toggler"
             type="button"
@@ -41,12 +41,12 @@ const Header = () => {
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
-              <li className="nav-item">
+              <li className="nav-item" style={{marginRight: '1em', marginLeft: '250px'}}>
                 <NavLink to="/" className="nav-link ">
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown" style={{marginRight: '1em'}}>
                 <Link
                   className="nav-link dropdown-toggle"
                   to={"/categories"}
@@ -75,7 +75,7 @@ const Header = () => {
 
               {!auth?.user ? (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item" style={{marginRight: '1em'}}>
                     <NavLink to="/register" className="nav-link">
                       Register
                     </NavLink>
@@ -88,7 +88,7 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <li className="nav-item dropdown">
+                  <li className="nav-item dropdown" style={{marginRight: '1em'}}>
                     <NavLink
                       className="nav-link dropdown-toggle"
                       href="#"

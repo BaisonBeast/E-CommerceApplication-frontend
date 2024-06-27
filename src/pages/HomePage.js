@@ -119,7 +119,7 @@ const HomePage = () => {
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column" style={{marginLeft: '10px'}}>
             {categories?.map((c) => (
               <Checkbox
                 key={c._id}
