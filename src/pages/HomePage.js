@@ -8,6 +8,9 @@ import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/Homepage.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,6 +22,7 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [homeImage, setHomeImage] = useState([]);
 
   //get all cat
   const getAllCategory = async () => {
@@ -32,9 +36,16 @@ const HomePage = () => {
     }
   };
 
+  const getHomeImage = async() => {
+    fetch('https://fakestoreapi.com/products')
+            .then(res=>res.json())
+            .then(data => setHomeImage(data));
+  }
+
   useEffect(() => {
     getAllCategory();
     getTotal();
+    getHomeImage();
   }, []);
   //get products
   const getAllProducts = async () => {
@@ -108,13 +119,25 @@ const HomePage = () => {
   };
   return (
     <Layout title={"ALl Products - Best offers "}>
-      {/* banner image */}
-      <img
-        src="/images/banner.png"
-        className="banner-img"
-        alt="bannerimage"
-        width={"100%"}
-      />
+      <div className="carousel">
+        <Carousel autoPlay={true} infiniteLoop={true} interval={2000} showThumbs={false} showIndicators={false} width={800}> 
+            {
+              homeImage.map(item => {
+                console.log(item)
+                return (
+                  <div>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="banner-img"
+                  />
+                  <p>{item.title}</p>
+                  </div>
+                )
+              })
+            }    
+        </Carousel>
+      </div>
       {/* banner image */}
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">
@@ -149,11 +172,11 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-        <div className="col-md-9 ">
+        <div className="col-md-9">
           <h1 className="text-center">All Products</h1>
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap pad">
             {products?.map((p) => (
-              <div className="card m-2" key={p._id}>
+              <div className="card m-3" key={p._id}>
                 <img
                   src={`https://e-commerce-backend-30vi.onrender.com/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"

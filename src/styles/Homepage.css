@@ -1,5 +1,6 @@
 .banner-img {
   margin-top: 60px;
+  height: 500px;
 }
 
 .home-page h1 {
@@ -74,4 +75,14 @@ filters
   color: green;
   font-weight: bold;
   font-size: 20px !important;
+}
+
+.carousel {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.pad {
+  padding-left: 40px;
 }

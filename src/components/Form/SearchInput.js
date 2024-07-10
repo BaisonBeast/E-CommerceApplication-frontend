@@ -27,6 +27,7 @@ const SearchInput = () => {
       >
         <input
           className="form-control me-2"
+          style={{width: "200px"}}
           type="search"
           placeholder="Search"
           aria-label="Search"
